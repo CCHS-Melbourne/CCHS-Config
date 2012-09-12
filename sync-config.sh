@@ -60,7 +60,7 @@ if [ ! -d "/usr/local/cura/12.08" ];then
 	echo -ne "Installing Cura 12.08";
 	apt-get -y install python-opengl libssl0.9.8
 	cd /usr/local/src
-	if [ ! -e "slic3r-linux-x86-0-9-2.tar.gz" ];then
+	if [ ! -e "linux-Cura-12.08.tar.gz" ];then
 		wget https://github.com/downloads/daid/Cura/linux-Cura-12.08.tar.gz
 	fi
 	tar -zxf linux-Cura-12.08.tar.gz
