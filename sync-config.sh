@@ -65,7 +65,7 @@ if [ ! -d "/usr/local/cura/12.08" ];then
 	fi
 	tar -zxf linux-Cura-12.08.tar.gz
 	mkdir -p /usr/local/cura
-	mv linux-Cura-12.08 /usr/local/slic3r/12.08
+	mv linux-Cura-12.08 /usr/local/cura/12.08
 	echo "...done.";
 fi
 
