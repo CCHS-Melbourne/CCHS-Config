@@ -35,7 +35,12 @@ if [ ! -e "/usr/bin/arduino" ]; then
 	apt-get -y install arduino;
 fi
 
-
+# Pronterface
+if [ ! -e "/usr/bin/pronterface" ]; then
+	apt-add-repository -y ppa:richi-paraeasy/ppa
+	apt-get update
+	apt-get install printrun-gui
+fi
 
 # Custom installs.
 # Make sure to add appropriate files into the skel section for desktop icons
@@ -70,7 +75,6 @@ if [ ! -d "/usr/local/cura/12.08" ];then
 	mv linux-Cura-12.08 /usr/local/cura/12.08
 	echo "...done.";
 fi
-
 
 # config resync
 # Don't blow away everything, easier to just do it in parts
