@@ -13,9 +13,9 @@ if [ ! -h "/etc/skel/Desktop" ];then
 fi
 
 # Apt updates.  Don't need to be noisy.
-echo "Updating package list";
+echo -ne "Updating package list";
 apt-get -qq update;
-echo "Package list updated";
+echo "...done.";
 
 # Specific Packages and PPA
 
@@ -42,6 +42,7 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	cd /usr/local/src
 	wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
 	tar -zxf slic3r-linux-x86-0-9-2.tar.gz
+	mkdir -p /usr/local/slic3r
 	mv Slic3r /usr/local/slic3r/0.9.2
 
 fi
@@ -52,10 +53,11 @@ fi
 # may change this policy in the future
 
 # Desktop
-echo "Clearing Desktop";
+echo -ne "Clearing Desktop";
 rm -rf /home/test/Desktop
 cp -R /etc/skel/Desktop /home/test
 chown -R test:test /home/test/Desktop
+echo "...done.";
 
 # Config
 # this doesn't need cleaning, but the defaults need to be recopied
