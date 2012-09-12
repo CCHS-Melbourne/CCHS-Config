@@ -55,7 +55,7 @@ fi
 # Desktop
 echo -ne "Clearing Desktop";
 rm -rf /home/test/Desktop
-cp -R /etc/skel/Desktop /home/test
+cp -RL /etc/skel/Desktop /home/test
 chown -R test:test /home/test/Desktop
 echo "...done.";
 
