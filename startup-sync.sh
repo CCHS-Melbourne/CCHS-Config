@@ -13,7 +13,6 @@ fi
 # Do we have a local repo?
 if [ -d "/usr/local/src/CCHS-Config" ]; then
 	# sync local repo.
-	echo "Directory exists.";
 	cd /usr/local/src/CCHS-Config
 	# double check options to force a pull.
 	git pull origin
