@@ -46,7 +46,9 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	# This is a pre-packaged slic3r that should just work
 	echo -ne "Installing Slic3r 0.9.2";
 	cd /usr/local/src
-	wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
+	if [ ! -e "slic3r-linux-x86-0-9-2.tar.gz" ]; then
+		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
+	fi
 	tar -zxf slic3r-linux-x86-0-9-2.tar.gz
 	mkdir -p /usr/local/slic3r
 	mv Slic3r /usr/local/slic3r/0.9.2
@@ -56,12 +58,14 @@ fi
 # Cura 12.08
 if [ ! -d "/usr/local/cura/12.08" ];then
 	echo -ne "Installing Cura 12.08";
-	apt-get install python-opengl libssl0.9.8
+	apt-get -y install python-opengl libssl0.9.8
 	cd /usr/local/src
-	wget https://github.com/downloads/daid/Cura/linux-Cura-12.08.tar.gz
+	if [ ! -e "slic3r-linux-x86-0-9-2.tar.gz" ];then
+		wget https://github.com/downloads/daid/Cura/linux-Cura-12.08.tar.gz
+	fi
 	tar -zxf linux-Cura-12.08.tar.gz
 	mkdir -p /usr/local/cura
-	mv linux-Cura-12.08.tar.gz /usr/local/slic3r/12.08
+	mv linux-Cura-12.08 /usr/local/slic3r/12.08
 	echo "...done.";
 fi
 
