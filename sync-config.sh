@@ -30,6 +30,11 @@ if [ -e "/usr/bin/vim.tiny" ];then
 	apt-get -y install vim;
 fi
 
+# Arduino IDE from repos
+if [ ! -e "/usr/bin/arduino" ]; then
+	apt-get -y install arduino;
+fi
+
 
 # Custom installs.
 # Make sure to add appropriate files into the skel section for desktop icons
@@ -39,12 +44,25 @@ fi
 if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	# slic3r 0.9.2 doesn't exist, install it.
 	# This is a pre-packaged slic3r that should just work
+	echo -ne "Installing Slic3r 0.9.2";
 	cd /usr/local/src
 	wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
 	tar -zxf slic3r-linux-x86-0-9-2.tar.gz
 	mkdir -p /usr/local/slic3r
 	mv Slic3r /usr/local/slic3r/0.9.2
+	echo "...done.";
+fi
 
+# Cura 12.08
+if [ ! -d "/usr/local/cura/12.08" ];then
+	echo -ne "Installing Cura 12.08";
+	apt-get install python-opengl libssl0.9.8
+	cd /usr/local/src
+	wget https://github.com/downloads/daid/Cura/linux-Cura-12.08.tar.gz
+	tar -zxf linux-Cura-12.08.tar.gz
+	mkdir -p /usr/local/cura
+	mv linux-Cura-12.08.tar.gz /usr/local/slic3r/12.08
+	echo "...done.";
 fi
 
 
