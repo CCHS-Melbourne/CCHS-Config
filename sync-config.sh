@@ -14,7 +14,7 @@ fi
 
 # Apt updates.  Don't need to be noisy.
 echo "Updating package list";
-apt-get -q update;
+apt-get -qq update;
 echo "Package list updated";
 
 # Specific Packages and PPA
@@ -25,7 +25,7 @@ if ! which sshd &> /dev/null;then
 fi
 
 # A real god damn vim
-if dpkg -l|grep vim-tiny &> /dev/null;then
+if [ -e "/usr/bin/vim.tiny" ];then
 	apt-get -y remove vim-tiny;
 	apt-get -y install vim;
 fi
@@ -42,7 +42,7 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	cd /usr/local/src
 	wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
 	tar -zxf slic3r-linux-x86-0-9-2.tar.gz
-	mv Slic3r slic3r-linux-x86-0.9.2
+	mv Slic3r /usr/local/slic3r/0.9.2
 
 fi
 
@@ -52,6 +52,7 @@ fi
 # may change this policy in the future
 
 # Desktop
+echo "Clearing Desktop";
 rm -rf /home/test/Desktop
 cp -R /etc/skel/Desktop /home/test
 chown -R test:test /home/test/Desktop
