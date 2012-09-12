@@ -16,6 +16,9 @@ fi
 echo -ne "Updating package list";
 apt-get -qq update;
 echo "...done.";
+echo -ne "Updating packages";
+apt-get -qqy upgrade;
+echo "...done.";
 
 # Specific Packages and PPA
 
@@ -87,16 +90,16 @@ fi
 
 # Desktop
 echo -ne "Clearing Desktop";
-rm -rf /home/test/Desktop
-cp -RL /etc/skel/Desktop /home/test
-chown -R test:test /home/test/Desktop
+rm -rf /home/hacker/Desktop
+cp -RL /etc/skel/Desktop /home/hacker
+chown -R hacker:hacker /home/hacker/Desktop
 echo "...done.";
 
 # Config
 # this doesn't need cleaning, but the defaults need to be recopied
 # any new files will stay
-cp -R /usr/local/src/CCHS-Config/Configs /home/test/
+cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 
 # Clean Downloads
 # decide on this later
-# rm -rf /home/test/Downloads/*
+# rm -rf /home/hacker/Downloads/*
