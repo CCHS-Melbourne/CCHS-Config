@@ -24,6 +24,9 @@ else
 	git clone https://github.com/mage0r/CCHS-Config.git /usr/local/src/CCHS-Config
 fi
 
-
+# double check that any new copy of this file and sync-config.sh are executable.
+chmod +x /usr/local/src/CCHS-Config/*.sh
 
 # run sync-config.sh
+cd /usr/local/src/CCHS-Config
+sync-config.sh
