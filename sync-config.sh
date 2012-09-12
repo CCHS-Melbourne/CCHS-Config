@@ -38,7 +38,7 @@ fi
 # Pronterface
 if [ ! -e "/usr/bin/pronterface" ]; then
 	apt-add-repository -y ppa:richi-paraeasy/ppa
-	apt-get update
+	apt-get -qq update
 	apt-get install printrun-gui
 fi
 
@@ -56,7 +56,9 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	if [ ! -e "slic3r-linux-x86-0-9-2.tar.gz" ]; then
 		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
 	fi
-	tar --no-same-owner -zxf slic3r-linux-x86-0-9-2.tar.gz
+	# this will only work as one user
+	#tar --no-same-owner -zxf slic3r-linux-x86-0-9-2.tar.gz
+	tar -zxf slic3r-linux-x86-0-9-2.tar.gz
 	mkdir -p /usr/local/slic3r
 	mv Slic3r /usr/local/slic3r/0.9.2
 	echo "...done.";
@@ -73,6 +75,9 @@ if [ ! -d "/usr/local/cura/12.08" ];then
 	tar  --no-same-owner -zxf linux-Cura-12.08.tar.gz
 	mkdir -p /usr/local/cura
 	mv linux-Cura-12.08 /usr/local/cura/12.08
+	# Cura needs to write to it's preferences file
+	touch /usr/local/cura/12.08/Cura/preferences.ini
+	chmod a+w /usr/local/cura/12.08/Cura/preferences.ini
 	echo "...done.";
 fi
 
