@@ -45,6 +45,19 @@ if [ ! -e "/usr/bin/pronterface" ]; then
 	apt-get install printrun-gui
 fi
 
+# LibreCAD
+if [ ! -e "/usr/bin/librecad" ]; then
+	apt-get -y install librecad;
+
+fi
+
+# OpenSCAD
+if [ ! -e "/usr/bin/openscad" ]; then
+	apt-get -y install openscad
+fi
+
+
+
 # Custom installs.
 # Make sure to add appropriate files into the skel section for desktop icons
 
