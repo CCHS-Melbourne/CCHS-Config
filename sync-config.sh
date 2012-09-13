@@ -112,6 +112,7 @@ echo "...done.";
 # this doesn't need cleaning, but the defaults need to be recopied
 # any new files will stay
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
+chown -R hacker:hacker /home/hacker/Configs
 
 # Clean Downloads
 # decide on this later
