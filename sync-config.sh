@@ -38,11 +38,11 @@ if [ ! -e "/usr/bin/arduino" ]; then
 	apt-get -y install arduino;
 fi
 
-# Pronterface
+# Pronterface and Skeinforge
 if [ ! -e "/usr/bin/pronterface" ]; then
 	apt-add-repository -y ppa:richi-paraeasy/ppa
 	apt-get -qq update
-	apt-get install printrun-gui
+	apt-get install printrun-gui skeinforge
 fi
 
 # LibreCAD
