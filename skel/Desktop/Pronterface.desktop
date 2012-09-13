@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Pronterface
-GenericName=Pronterface 3d Printer Driver
-Exec=/usr/bin/pronterface
-Icon=/usr/share/printrun/P-face.ico
-Terminal=false
-Categories=Development;Engineering;Electronics;
