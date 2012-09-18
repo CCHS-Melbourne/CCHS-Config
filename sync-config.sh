@@ -14,6 +14,12 @@ fi
 # check hacker groups
 # id -Gn produces a set of groups
 
+# wireless connection
+if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
+	cd /etc/NetworkManager/system-connections/
+	cp /usr/local/src/CCHS-Config/system-connections/CCHS .
+fi
+
 # Skel Desktop Location
 if [ ! -h "/etc/skel/Desktop" ];then
 	cd /etc/skel
