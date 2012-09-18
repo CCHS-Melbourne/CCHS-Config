@@ -5,6 +5,15 @@
 
 # Any sort of setup stuff
 
+# make sure we have a hacker user and create it if required.
+if ! id -un hacker &> /dev/null;then
+	useradd -mU hacker -s /bin/bash
+	echo hacker:hacker | chpasswd
+fi
+
+# check hacker groups
+# id -Gn produces a set of groups
+
 # Skel Desktop Location
 if [ ! -h "/etc/skel/Desktop" ];then
 	cd /etc/skel
@@ -42,7 +51,7 @@ fi
 if [ ! -e "/usr/bin/pronterface" ]; then
 	apt-add-repository -y ppa:richi-paraeasy/ppa
 	apt-get -qq update
-	apt-get install printrun-gui skeinforge
+	apt-get -y install printrun-gui skeinforge
 fi
 
 # LibreCAD
@@ -53,6 +62,8 @@ fi
 
 # OpenSCAD
 if [ ! -e "/usr/bin/openscad" ]; then
+	apt-add-repository -y ppa:chrysn/openscad
+	apt-get -qq update
 	apt-get -y install openscad
 fi
 

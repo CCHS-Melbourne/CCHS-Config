@@ -6,8 +6,8 @@
 # do we have git?
 if ! which git &> /dev/null;then
 	echo "git not found.  Installing from repos";
-	apt-get update;
-	apt-get install git;
+	apt-get -qq update;
+	apt-get -y install git;
 fi
 
 # Do we have a local repo?
