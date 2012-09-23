@@ -57,7 +57,7 @@ fi
 
 # Apt updates.  Don't need to be noisy.
 echo -ne "Updating package list";
-apt-get -qq update;
+apt-get update;
 echo "...done.";
 echo -ne "Updating packages";
 apt-get -qqy upgrade;
