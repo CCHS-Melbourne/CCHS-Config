@@ -60,7 +60,7 @@ echo -ne "Updating package list";
 apt-get -qq update;
 echo "...done.";
 echo -ne "Updating packages";
-apt-get -y upgrade;
+apt-get -qqy upgrade;
 echo "...done.";
 
 # Specific Packages and PPA
