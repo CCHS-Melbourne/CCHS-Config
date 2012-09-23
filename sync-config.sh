@@ -57,10 +57,10 @@ fi
 
 # Apt updates.  Don't need to be noisy.
 echo -ne "Updating package list";
-apt-get update;
+apt-get -qq update;
 echo "...done.";
 echo -ne "Updating packages";
-apt-get -qqy upgrade;
+apt-get -y upgrade;
 echo "...done.";
 
 # Specific Packages and PPA
