@@ -159,3 +159,5 @@ chown -R hacker:hacker /home/hacker/Configs
 # Clean Downloads
 # decide on this later
 # rm -rf /home/hacker/Downloads/*
+
+service lightdm restart
