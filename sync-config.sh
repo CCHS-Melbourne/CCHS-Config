@@ -182,5 +182,5 @@ echo "...done";
 # Clean Downloads
 # decide on this later
 # rm -rf /home/hacker/Downloads/*
-echo "Restarting LightDM";
-service lightdm restart
+echo "Starting LightDM";
+service lightdm start
