@@ -13,6 +13,26 @@ fi
 
 # check hacker groups
 # id -Gn produces a set of groups
+required_groups=( "hacker" "adm" "cdrom" "sudo" "dip" "plugdev" "lpadmin" "sambashare" )
+hacker_groups=( $(id -Gn hacker) )
+add_groups=()
+for i in "${required_groups[@]}"; do
+	skip=0
+	for j in "${hacker_groups[@]}"; do
+		if [ $i == $j  ]; then
+			skip=1;
+			break;
+		fi
+	done
+	if [ $skip -eq "0" ]; then
+		add_groups+=("$i");
+	fi
+done
+
+for i in "${add_groups[@]}"; do
+	adduser hacker $i;
+done
+
 
 # wireless connection
 if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
