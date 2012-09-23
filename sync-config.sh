@@ -145,6 +145,11 @@ cp -RL /etc/skel/Desktop /home/hacker
 chown -R hacker:hacker /home/hacker/Desktop
 echo "...done.";
 
+# reset hacker to autologin
+echo -ne "Setting hacker to be default login";
+rm -rf /etc/lightdm
+cp -RL /usr/local/src/CCHS-Config/lightdm /etc/
+
 # Config
 # this doesn't need cleaning, but the defaults need to be recopied
 # any new files will stay
