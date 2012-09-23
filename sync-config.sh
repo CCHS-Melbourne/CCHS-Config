@@ -6,9 +6,11 @@
 # Any sort of setup stuff
 
 # make sure we have a hacker user and create it if required.
+echo -ne "Checking Hacker User exists";
 if ! id -un hacker &> /dev/null;then
 	useradd -mU hacker -s /bin/bash
 	echo hacker:hacker | chpasswd
+	echo -ne "...created User"
 fi
 
 # check hacker groups
@@ -31,20 +33,26 @@ done
 
 for i in "${add_groups[@]}"; do
 	adduser hacker $i;
+	echo -ne "...added groups";
 done
 
+echo "...done.";
 
 # wireless connection
+echo -ne "Copying Network Connection";
 if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
 	cd /etc/NetworkManager/system-connections/
 	cp /usr/local/src/CCHS-Config/system-connections/CCHS .
 fi
+echo "...done.";
 
 # Skel Desktop Location
 if [ ! -h "/etc/skel/Desktop" ];then
+	echo -ne "Creating Desktop skel";
 	cd /etc/skel
 	rm -rf Desktop
 	ln -s /usr/local/src/CCHS-Config/skel/Desktop
+	echo "...done.";
 fi
 
 # Apt updates.  Don't need to be noisy.
@@ -58,40 +66,52 @@ echo "...done.";
 # Specific Packages and PPA
 
 # SSH Daemon
+echo -ne "Checking sshd installed";
 if ! which sshd &> /dev/null;then
-	apt-get -y install openssh-server;
+	apt-get -qqy install openssh-server;
 fi
+echo "...done";
 
 # A real god damn vim
+echo -ne "Checking vim installed";
 if [ -e "/usr/bin/vim.tiny" ];then
-	apt-get -y remove vim-tiny;
-	apt-get -y install vim;
+	apt-get -qqy remove vim-tiny;
+	apt-get -qqy install vim;
 fi
+echo "...done";
 
 # Arduino IDE from repos
+echo -ne "Checking Arduino IDE installed";
 if [ ! -e "/usr/bin/arduino" ]; then
-	apt-get -y install arduino;
+	apt-get -qqy install arduino;
 fi
+echo "...done";
 
 # Pronterface and Skeinforge
+echo -ne "Checking Pronterface and Skeinforge installed";
 if [ ! -e "/usr/bin/pronterface" ]; then
-	apt-add-repository -y ppa:richi-paraeasy/ppa
+	apt-add-repository -qy ppa:richi-paraeasy/ppa
 	apt-get -qq update
-	apt-get -y install printrun-gui skeinforge
+	apt-get -qqy install printrun-gui skeinforge
 fi
+echo "...done";
 
 # LibreCAD
+echo -ne "Checking LibreCAD installed";
 if [ ! -e "/usr/bin/librecad" ]; then
 	apt-get -y install librecad;
 
 fi
+echo "...done";
 
 # OpenSCAD
+echo -ne "Checking OpenSCAD installed";
 if [ ! -e "/usr/bin/openscad" ]; then
 	apt-add-repository -y ppa:chrysn/openscad
 	apt-get -qq update
 	apt-get -y install openscad
 fi
+echo "...done";
 
 
 
@@ -149,15 +169,18 @@ echo "...done.";
 echo -ne "Setting hacker to be default login";
 rm -rf /etc/lightdm
 cp -RL /usr/local/src/CCHS-Config/lightdm /etc/
+echo "...done";
 
 # Config
 # this doesn't need cleaning, but the defaults need to be recopied
 # any new files will stay
+echo -ne "Resetting Configs";
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 chown -R hacker:hacker /home/hacker/Configs
+echo "...done";
 
 # Clean Downloads
 # decide on this later
 # rm -rf /home/hacker/Downloads/*
-
+echo "Restarting LightDM";
 service lightdm restart
