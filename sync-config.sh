@@ -4,6 +4,7 @@
 # I have broken these commands down into types to make it easier to find them.
 
 # Any sort of setup stuff
+ping -c 1 www.google.com.au
 
 # make sure we have a hacker user and create it if required.
 echo -ne "Checking Hacker User exists";
