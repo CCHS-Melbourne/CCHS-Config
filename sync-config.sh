@@ -195,7 +195,7 @@ echo "...done";
 echo -ne "Resetting Configs";
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 chown -R hacker:hacker /home/hacker/Configs
-rm /home/hacker/.Slic3r
+rm -rf /home/hacker/.Slic3r
 ln -s /home/hacker/Configs/Prusa/slic3r-0.9.2/ .Slic3r
 echo "...done";
 
