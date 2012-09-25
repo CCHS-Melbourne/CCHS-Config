@@ -13,11 +13,21 @@ if ! id -un hacker &> /dev/null;then
 	echo -ne "...created User"
 	
 	# Slic3r Needs to run as uid 1000
-	if [ "id -n hacker" -ne "1000" ]; then
+	hacker_uid=`id -n hacker`
+	hacker_gid=`id -g hacker`
+	if [ "$hacker_uid" -ne "1000" ]; then
 		echo -ne "...hacker user is not uid 1000";
+		sed -ie 's/:1000:1000:/:'$hacker_uid':'$hacker_gid':/g' "/etc/passwd"
+		sed -ie 's/hacker:x:'$hacker_uid':'$hacker_gid':/hacker:x:1000:1000:/g' "/etc/passwd"
+
+		# resetting home directories
+		# only bother with the hacker user
+		# re-evaluate this later
 		
+		chown -R hacker:hacker /home/hacker
 	fi
 fi
+echo "...done";
 
 # check hacker groups
 # id -Gn produces a set of groups
@@ -196,7 +206,22 @@ echo -ne "Resetting Configs";
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 chown -R hacker:hacker /home/hacker/Configs
 rm -rf /home/hacker/.Slic3r
-ln -s /home/hacker/Configs/Prusa/slic3r-0.9.2/ /home/hacker/.Slic3r
+
+#which machine are we?
+LOWER_HOSTNAME=`echo $HOSTNAME | tr [:upper:] [:lower:]`
+if [[ "$LOWER_HOSTNAME" == *004* && "$LOWER_HOSTNAME" == *cchs* ]];then
+	# This is the frankencake
+	PRINTER_CONFIG="FrankenCake";
+elif [[ "$LOWER_HOSTNAME" == *011* && "$LOWER_HOSTNAME" == *cchs* ]];then
+	# this is the prusa
+	PRINTER_CONFIG="Prusa";
+else
+	# this is the default
+	PRINTER_CONFIG="Prusa";
+fi
+
+
+ln -s /home/hacker/Configs/$PRINTER_CONFIG/slic3r-0.9.2/ /home/hacker/.Slic3r
 echo "...done";
 
 # Clean Downloads
