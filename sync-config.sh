@@ -16,7 +16,7 @@ echo "...done";
 
 echo -ne "Checking Hacker User is 1000";
 # Slic3r Needs to run as uid 1000
-hacker_uid=`id -n hacker`
+hacker_uid=`id -u hacker`
 hacker_gid=`id -g hacker`
 if [ "$hacker_uid" -ne "1000" ]; then
 	echo -ne "...hacker user is not uid 1000";
