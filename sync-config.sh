@@ -116,7 +116,7 @@ echo "...done";
 # Pronterface and Skeinforge
 echo -ne "Checking Pronterface and Skeinforge installed";
 if [ ! -e "/usr/bin/pronterface" ]; then
-	apt-add-repository -qy ppa:richi-paraeasy/ppa
+	apt-add-repository -y ppa:richi-paraeasy/ppa
 	apt-get -qq update
 	apt-get -qqy install printrun-gui skeinforge
 fi
