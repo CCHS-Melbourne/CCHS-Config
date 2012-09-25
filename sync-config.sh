@@ -125,7 +125,7 @@ echo "...done";
 # LibreCAD
 echo -ne "Checking LibreCAD installed";
 if [ ! -e "/usr/bin/librecad" ]; then
-	apt-get -y install librecad;
+	apt-get -qy install librecad;
 
 fi
 echo "...done";
@@ -135,7 +135,7 @@ echo -ne "Checking OpenSCAD installed";
 if [ ! -e "/usr/bin/openscad" ]; then
 	apt-add-repository -y ppa:chrysn/openscad
 	apt-get -qq update
-	apt-get -y install openscad
+	apt-get -qy install openscad
 fi
 echo "...done";
 
@@ -211,12 +211,15 @@ rm -rf /home/hacker/.Slic3r
 LOWER_HOSTNAME=`echo $HOSTNAME | tr [:upper:] [:lower:]`
 if [[ "$LOWER_HOSTNAME" == *004* && "$LOWER_HOSTNAME" == *cchs* ]];then
 	# This is the frankencake
+	echo -ne "...default Slic3r profile is FrankenCake";
 	PRINTER_CONFIG="FrankenCake";
 elif [[ "$LOWER_HOSTNAME" == *011* && "$LOWER_HOSTNAME" == *cchs* ]];then
 	# this is the prusa
+	echo -ne "...default Slic3r profile is Prusa";
 	PRINTER_CONFIG="Prusa";
 else
 	# this is the default
+	echo -ne "...default Slic3r profile is Prusa";
 	PRINTER_CONFIG="Prusa";
 fi
 
