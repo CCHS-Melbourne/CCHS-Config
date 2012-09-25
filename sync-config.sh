@@ -11,6 +11,12 @@ if ! id -un hacker &> /dev/null;then
 	useradd -mU hacker -s /bin/bash
 	echo hacker:hacker | chpasswd
 	echo -ne "...created User"
+	
+	# Slic3r Needs to run as uid 1000
+	if [ "id -n hacker" -ne "1000" ]; then
+		echo -ne "...hacker user is not uid 1000";
+		
+	fi
 fi
 
 # check hacker groups
@@ -36,6 +42,16 @@ for i in "${add_groups[@]}"; do
 	echo -ne "...added groups";
 done
 
+echo "...done.";
+
+
+# is the startup script run by lightdm's upstart script?
+echo -ne "Checking lightdm startup script";
+if [ `grep 'startup-sync.sh' /etc/init/lightdm.conf|wc -l` -eq 0 ]; then
+	# file is stock
+	cp /usr/local/src/CCHS-Config/init/lightdm.conf /etc/init/lightdm.conf
+	echo -ne "...adding";
+fi
 echo "...done.";
 
 # wireless connection
@@ -165,6 +181,8 @@ cp -RL /etc/skel/Desktop /home/hacker
 chown -R hacker:hacker /home/hacker/Desktop
 echo "...done.";
 
+# setup flags to load specific configs
+
 # reset hacker to autologin
 echo -ne "Setting hacker to be default login";
 rm -rf /etc/lightdm
@@ -177,10 +195,10 @@ echo "...done";
 echo -ne "Resetting Configs";
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 chown -R hacker:hacker /home/hacker/Configs
+rm /home/hacker/.Slic3r
+ln -s /home/hacker/Configs/Prusa/slic3r-0.9.2/ .Slic3r
 echo "...done";
 
 # Clean Downloads
 # decide on this later
 # rm -rf /home/hacker/Downloads/*
-#echo "Starting LightDM";
-#service lightdm start
