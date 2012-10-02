@@ -7,7 +7,7 @@ type=802-11-wireless
 [802-11-wireless]
 ssid=CCHS
 mode=infrastructure
-mac-address=0:1e:65:48:40:1a
+mac-address=<MAC>
 security=802-11-wireless-security
 
 [802-11-wireless-security]

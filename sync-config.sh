@@ -71,6 +71,10 @@ echo -ne "Copying Network Connection";
 if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
 	cd /etc/NetworkManager/system-connections/
 	cp /usr/local/src/CCHS-Config/system-connections/CCHS .
+	# replace with the system mac address
+	# get the mac address
+	MAC_ADDRESS=`ifconfig wlan | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
+	sed -ie 's/<MAC>/'$MAC_ADDRESS'/g' "/etc/NetworkManager/system-connections/CCHS"
 fi
 echo "...done.";
 
@@ -159,7 +163,7 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	echo -ne "Installing Slic3r 0.9.2";
 	cd /usr/local/src
 	if [ ! -e "slic3r-linux-x86-0-9-2.tar.gz" ]; then
-		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-2.tar.gz
+		wget http://dl.slic3r.org/linux/old/slic3r-linux-x86-0-9-2.tar.gz
 	fi
 	# this will only work as one user
 	#tar --no-same-owner -zxf slic3r-linux-x86-0-9-2.tar.gz
