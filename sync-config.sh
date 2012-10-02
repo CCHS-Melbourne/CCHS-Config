@@ -33,7 +33,7 @@ echo "...done";
 
 # check hacker groups
 # id -Gn produces a set of groups
-required_groups=( "hacker" "adm" "cdrom" "sudo" "dip" "plugdev" "lpadmin" "sambashare" )
+required_groups=( "hacker" "adm" "cdrom" "sudo" "dip" "plugdev" "lpadmin" "sambashare" "dialout" )
 hacker_groups=( $(id -Gn hacker) )
 add_groups=()
 for i in "${required_groups[@]}"; do
