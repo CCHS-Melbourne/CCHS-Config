@@ -87,6 +87,15 @@ if [ ! -h "/etc/skel/Desktop" ];then
 	echo "...done.";
 fi
 
+# Skel .config location
+if [ ! -h "/etc/skel/.config" ];then
+	echo -ne "Creating .config skel";
+	cd /etc/skel
+	rm -rf .config
+	ln -s /usr/local/src/CCHS-Config/skel/.config
+	echo "...done.";
+fi
+
 # Apt updates.  Don't need to be noisy.
 echo -ne "Updating package list";
 apt-get -qq update;
