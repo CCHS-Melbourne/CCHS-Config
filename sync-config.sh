@@ -125,6 +125,14 @@ if [ ! -e "/usr/bin/vim" ];then
 fi
 echo "...done";
 
+# inkscape
+echo -ne "Checking inkscape installed";
+if [ -e "/usr/bin/inkscape" ];then
+	apt-get -qqy install inkscape;
+	echo -ne "...inkscape installed";
+fi
+echo "...done";
+
 # Arduino IDE from repos
 echo -ne "Checking Arduino IDE installed";
 if [ ! -e "/usr/bin/arduino" ]; then
@@ -208,6 +216,16 @@ echo -ne "Clearing Desktop";
 rm -rf /home/hacker/Desktop
 cp -RL /etc/skel/Desktop /home/hacker
 chown -R hacker:hacker /home/hacker/Desktop
+echo "...done.";
+
+# inkscape extensions
+echo -ne "Adding Inkscape eggbot extensions";
+if [ ! -e "/home/hacker/.config/inkscape/extensions/templates/eggbot.svg" ];then
+	echo -ne "...creating inkscape extensions";
+	mkdir -p /home/hacker/.config/inkscape
+	cp -R /usr/local/src/CCHS-Config/skel/.config/inkscape /home/hacker/.config/
+	chown -R hacker:hacker /home/hacker/.config/inkscape
+fi
 echo "...done.";
 
 # setup flags to load specific configs
