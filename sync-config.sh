@@ -73,7 +73,7 @@ if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
 	cp /usr/local/src/CCHS-Config/system-connections/CCHS .
 	# replace with the system mac address
 	# get the mac address
-	MAC_ADDRESS=`ifconfig wlan | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
+	MAC_ADDRESS=`ifconfig | grep wlan | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}'`
 	sed -ie 's/<MAC>/'$MAC_ADDRESS'/g' "/etc/NetworkManager/system-connections/CCHS"
 fi
 echo "...done.";
