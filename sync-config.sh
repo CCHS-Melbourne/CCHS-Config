@@ -127,7 +127,7 @@ echo "...done";
 
 # inkscape
 echo -ne "Checking inkscape installed";
-if [ -e "/usr/bin/inkscape" ];then
+if [ ! -e "/usr/bin/inkscape" ];then
 	apt-get -qqy install inkscape;
 	echo -ne "...inkscape installed";
 fi
