@@ -250,7 +250,7 @@ if [[ "$LOWER_HOSTNAME" == *004* && "$LOWER_HOSTNAME" == *cchs* ]];then
 	# This is the frankencake
 	echo -ne "...default Slic3r profile is FrankenCake";
 	PRINTER_CONFIG="FrankenCake";
-if [[ "$LOWER_HOSTNAME" == *006* && "$LOWER_HOSTNAME" == *cchs* ]];then
+elif [[ "$LOWER_HOSTNAME" == *006* && "$LOWER_HOSTNAME" == *cchs* ]];then
 	# This is the frankencake
 	echo -ne "...default Slic3r profile is FrankenCake";
 	PRINTER_CONFIG="FrankenCake";
