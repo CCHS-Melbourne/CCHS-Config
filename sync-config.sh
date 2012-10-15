@@ -166,6 +166,13 @@ if [ ! -e "/usr/bin/openscad" ]; then
 fi
 echo "...done";
 
+# png23d
+echo -ne "Checking png23d installed";
+if [ ! -e "/usr/bin/png23d" ]; then
+	apt-get -qq update
+	apt-get -qy install png23d
+fi
+echo "...done";
 
 
 # Custom installs.
