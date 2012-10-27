@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=SketchUp 8
+Exec=env WINEPREFIX="/home/hacker/.wine" wine C:\\\\Program\\ Files\\\\Google\\\\Google\\ SketchUp\\ 8\\\\SketchUp.exe 
+Type=Application
+StartupNotify=true
+Icon=7641_SketchUpIcon.0
