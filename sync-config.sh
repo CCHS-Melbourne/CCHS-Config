@@ -197,6 +197,25 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 	echo "...done.";
 fi
 
+# Slic3r 0.9.3
+# I looked but couldn't find a ppa for this
+if [ ! -d "/usr/local/slic3r/0.9.3" ];then
+	# slic3r 0.9.3 doesn't exist, install it.
+	# This is a pre-packaged slic3r that should just work
+	# Problems exist with ownership permissions.
+	echo -ne "Installing Slic3r 0.9.3";
+	cd /usr/local/src
+	if [ ! -e "slic3r-linux-x86-0-9-3.tar.gz" ]; then
+		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-3.tar.gz
+	fi
+	# this will only work as one user
+	#tar --no-same-owner -zxf slic3r-linux-x86-0-9-2.tar.gz
+	tar -zxf slic3r-linux-x86-0-9-3.tar.gz
+	mkdir -p /usr/local/slic3r
+	mv Slic3r /usr/local/slic3r/0.9.3
+	echo "...done.";
+fi
+
 # Cura 12.08
 if [ ! -d "/usr/local/cura/12.08" ];then
 	echo -ne "Installing Cura 12.08";
