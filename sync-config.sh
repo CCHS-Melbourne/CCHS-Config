@@ -174,6 +174,13 @@ if [ ! -e "/usr/bin/png23d" ]; then
 fi
 echo "...done";
 
+# wine
+echo -ne "Checking wine installed";
+if [ ! -e "/usr/bin/wine" ]; then
+	apt-get -qq update
+	apt-get -qy install wine
+fi
+echo "...done";
 
 # Custom installs.
 # Make sure to add appropriate files into the skel section for desktop icons
@@ -243,6 +250,19 @@ rm -rf /home/hacker/Desktop
 cp -RL /etc/skel/Desktop /home/hacker
 chown -R hacker:hacker /home/hacker/Desktop
 echo "...done.";
+
+# check for sketchup 8 install, remove shortcut if it doesn't exist
+if [ ! -d "/home/hacker/.wine/drive_c/Program Files/Google/Google SketchUp 8/" ]; then
+	rm "/home/hacker/Desktop/SketchUp 8.desktop"
+	cd /usr/local/src/
+	if [ ! -e "SketchUpWEN.exe" ];then
+                wget http://dl.google.com/sketchup/SketchUpWEN.exe
+        fi
+	cp SketchUpWEN.exe "/home/hacker/Desktop/Install Sketchup.exe"
+else
+	# install the sketchup defaults.
+	sudo -u hacker wine /home/hacker/Configs/wine/sketchup.reg
+fi
 
 # inkscape extensions
 echo -ne "Adding Inkscape eggbot extensions";
