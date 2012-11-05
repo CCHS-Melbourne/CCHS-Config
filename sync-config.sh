@@ -176,10 +176,11 @@ echo "...done";
 
 # wine
 echo -ne "Checking wine installed";
-if [ ! -e "/usr/bin/wine" ]; then
-	apt-get -qq update
-	apt-get -qy install wine
-fi
+# Wine installation asks user questions that can't currently be answered
+#if [ ! -e "/usr/bin/wine" ]; then
+#	apt-get -qq update
+#	apt-get -qy install wine
+#fi
 echo "...done";
 
 # Custom installs.
