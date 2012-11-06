@@ -1,7 +1,7 @@
 
 [Desktop Entry]
 Type=Application
-Exec="apt-get install wine"
+Exec="/usr/local/src/CCHS-Config/Configs/wine/wine-install.sh"
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
@@ -9,3 +9,4 @@ Name[en_AU]="Install Wine"
 Name="Install Wine"
 Comment[en_AU]=
 Comment=
+Terminal=true
