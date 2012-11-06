@@ -177,10 +177,11 @@ echo "...done";
 # wine
 echo -ne "Checking wine installed";
 # Wine installation asks user questions that can't currently be answered
-#if [ ! -e "/usr/bin/wine" ]; then
-#	apt-get -qq update
-#	apt-get -qy install wine
-#fi
+# get around this by starting after Unity if wine doesn't exist
+if [ ! -e "/usr/bin/wine" ]; then
+
+	cp -R /usr/local/src/CCHS-Config/Configs/autostart /home/hacker/.config/
+fi
 echo "...done";
 
 # Custom installs.
@@ -290,6 +291,10 @@ echo -ne "Resetting Configs";
 cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
 chown -R hacker:hacker /home/hacker/Configs
 rm -rf /home/hacker/.Slic3r
+
+# Turn off screen locking and locking from resume
+gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
+gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 #which machine are we?
 LOWER_HOSTNAME=`echo $HOSTNAME | tr [:upper:] [:lower:]`
