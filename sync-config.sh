@@ -215,7 +215,7 @@ if [ ! -d "/usr/local/slic3r/0.9.3" ];then
 	echo -ne "Installing Slic3r 0.9.3";
 	cd /usr/local/src
 	if [ ! -e "slic3r-linux-x86-0-9-3.tar.gz" ]; then
-		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-3.tar.gz
+		wget http://dl.slic3r.org/linux/old/slic3r-linux-x86-0-9-3.tar.gz
 	fi
 	# this will only work as one user
 	#tar --no-same-owner -zxf slic3r-linux-x86-0-9-2.tar.gz
