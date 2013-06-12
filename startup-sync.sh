@@ -21,6 +21,7 @@ else
 	echo "No original clone.";
 	# this git location may need to be updated at some point.
 	git clone https://github.com/CCHS-Melbourne/CCHS-Config.git /usr/local/src/CCHS-Config
+	git checkout -B ubuntu-13.04
 fi
 
 # run sync-config.sh
