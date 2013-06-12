@@ -1,9 +1,9 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
-Name=Cura 12.08
-GenericName=Cura 3d Printing Software version 12.08
-Exec=/usr/local/cura/12.08/cura.sh
+Name=Cura
+GenericName=Cura 3d Printing Software
+Exec=cura
 Icon=/usr/local/cura/12.08/Cura/stl.ico
 Terminal=false
 Categories=Development;Engineering;Electronics;

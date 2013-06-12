@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Arduino IDE
+GenericName=Create physical computing projects
+Exec=/usr/local/arduino/1.0.5/arduino
+Icon=arduino
+Terminal=false
+Categories=Development;Engineering;Electronics;

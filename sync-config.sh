@@ -56,16 +56,6 @@ done
 
 echo "...done.";
 
-
-# is the startup script run by lightdm's upstart script?
-echo -ne "Checking lightdm startup script";
-if [ `grep 'startup-sync.sh' /etc/init/lightdm.conf|wc -l` -eq 0 ]; then
-	# file is stock
-	cp /usr/local/src/CCHS-Config/init/lightdm.conf /etc/init/lightdm.conf
-	echo -ne "...adding";
-fi
-echo "...done.";
-
 # wireless connection
 echo -ne "Copying Network Connection";
 if [ ! -h "/etc/NetworkManager/system-connections/CCHS" ];then
@@ -107,9 +97,10 @@ echo "...done.";
 # Specific Packages and PPA
 
 # SSH Daemon
+# remove ssh
 echo -ne "Checking sshd installed";
-if ! which sshd &> /dev/null;then
-	apt-get -qqy install openssh-server;
+if which sshd &> /dev/null;then
+	apt-get -qqy remove openssh-server;
 fi
 echo "...done";
 
@@ -139,6 +130,18 @@ if [ ! -e "/usr/bin/arduino" ]; then
 	apt-get -qqy install arduino;
 fi
 echo "...done";
+
+# Arduino from source
+echo -ne "Installing Arduino IDE Version 1.0.5"
+if [ ! -d "/usr/local/arduino/1.0.5" ]; then
+	cd /usr/local/src/
+	wget http://arduino.googlecode.com/files/arduino-1.0.5-linux32.tgz
+	tar -zxf arduino-1.0.5-linux32.tgz
+	if [ ! -d "/usr/local/arduino" ]; then
+		mkdir "/usr/local/arduino"
+	fi
+	mv /usr/local/src/arduino-1.0.5 /usr/local/arduino/1.0.5
+fi
 
 # Pronterface and Skeinforge
 echo -ne "Checking Pronterface and Skeinforge installed";
@@ -207,7 +210,6 @@ if [ ! -d "/usr/local/slic3r/0.9.2" ];then
 fi
 
 # Slic3r 0.9.3
-# I looked but couldn't find a ppa for this
 if [ ! -d "/usr/local/slic3r/0.9.3" ];then
 	# slic3r 0.9.3 doesn't exist, install it.
 	# This is a pre-packaged slic3r that should just work
@@ -222,6 +224,24 @@ if [ ! -d "/usr/local/slic3r/0.9.3" ];then
 	tar -zxf slic3r-linux-x86-0-9-3.tar.gz
 	mkdir -p /usr/local/slic3r
 	mv Slic3r /usr/local/slic3r/0.9.3
+	echo "...done.";
+fi
+
+# Slic3r 0.9.9
+if [ ! -d "/usr/local/slic3r/0.9.9" ];then
+	# slic3r 0.9.9 doesn't exist, install it.
+	# This is a pre-packaged slic3r that should just work
+	# Problems exist with ownership permissions.
+	echo -ne "Installing Slic3r 0.9.9";
+	cd /usr/local/src
+	if [ ! -e "slic3r-linux-x86-0-9-9.tar.gz" ]; then
+		wget http://dl.slic3r.org/linux/slic3r-linux-x86-0-9-9.tar.gz
+	fi
+	# this will only work as one user
+	#tar --no-same-owner -zxf slic3r-linux-x86-0-9-9.tar.gz
+	tar -zxf slic3r-linux-x86-0-9-9.tar.gz
+	mkdir -p /usr/local/slic3r
+	mv Slic3r /usr/local/slic3r/0.9.9
 	echo "...done.";
 fi
 
@@ -240,6 +260,27 @@ if [ ! -d "/usr/local/cura/12.08" ];then
 	touch /usr/local/cura/12.08/Cura/preferences.ini
 	chmod a+w /usr/local/cura/12.08/Cura/preferences.ini
 	echo "...done.";
+fi
+
+# Cura official
+if [ ! -d "/usr/local/src/Cura" ];then
+	echo "Installing Cura from git";
+	cd /usr/local/src
+	git clone https://github.com/daid/Cura.git
+	apt-get install -y python-opengl python-numpy python-serial python-setuptools
+	cd Cura
+	./package.sh debian
+	dpkg -i ./scripts/linux/Cura*.deb
+fi
+
+# GrblController from Bob's repository
+if [ ! -d "/usr/local/GrblHoming" ]; then
+	cd /usr/local/
+	git clone https://github.com/rdpowers/GrblHoming.git
+	apt-get install -y libudev-dev qtcreator
+	cd /usr/local/GrblHoming/
+	qmake GcodeSenderGUIthreads.pro
+	make
 fi
 
 # config resync
@@ -317,7 +358,7 @@ else
 fi
 
 
-ln -s /home/hacker/Configs/$PRINTER_CONFIG/slic3r-0.9.2/ /home/hacker/.Slic3r
+ln -s /home/hacker/Configs/$PRINTER_CONFIG/slic3r-0.9.9/ /home/hacker/.Slic3r
 echo "...done";
 
 # Clean Downloads

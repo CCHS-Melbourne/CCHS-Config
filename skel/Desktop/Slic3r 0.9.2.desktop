@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Slic3r 0.9.2
-GenericName=Slic3r 3d Printing Software version 0.9.2
-Exec=/usr/local/slic3r/0.9.2/bin/slic3r
-Icon=/usr/local/slic3r/0.9.2/res/Slic3r.ico
-Terminal=false
-Categories=Development;Engineering;Electronics;

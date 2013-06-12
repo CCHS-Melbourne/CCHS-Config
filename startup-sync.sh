@@ -25,4 +25,4 @@ fi
 
 # run sync-config.sh
 cd /usr/local/src/CCHS-Config
-./sync-config.sh > /tmp/boot.log
+./sync-config.sh

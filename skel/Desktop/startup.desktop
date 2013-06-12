@@ -1,0 +1,7 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Startup Application
+Exec=/usr/local/src/CCHS-Config/startup-sync.sh
+Icon=terminal
+Terminal=true
