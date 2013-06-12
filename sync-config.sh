@@ -277,7 +277,7 @@ fi
 if [ ! -d "/usr/local/GrblHoming" ]; then
 	cd /usr/local/
 	git clone https://github.com/rdpowers/GrblHoming.git
-	apt-get install -y libudev-dev qtcreator
+	apt-get install -y libudev-dev qt4-qtcreator
 	cd /usr/local/GrblHoming/
 	qmake GcodeSenderGUIthreads.pro
 	make
