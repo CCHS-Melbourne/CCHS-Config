@@ -26,4 +26,4 @@ fi
 # run sync-config.sh
 cd /usr/local/src/CCHS-Config
 ./sync-config.sh
-read -p "Complete, Press any key to close window"
+read -p "Complete, Press ENTER key to close window"
