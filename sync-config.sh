@@ -331,11 +331,6 @@ echo "...done.";
 
 # setup flags to load specific configs
 
-# reset hacker to autologin
-echo -ne "Setting hacker to be default login";
-rm -rf /etc/lightdm
-cp -RL /usr/local/src/CCHS-Config/lightdm /etc/
-echo "...done";
 
 # Config
 # this doesn't need cleaning, but the defaults need to be recopied

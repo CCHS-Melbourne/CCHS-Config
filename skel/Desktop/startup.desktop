@@ -3,5 +3,6 @@
 Type=Application
 Name=Update Software
 Exec=gksudo /usr/local/src/CCHS-Config/startup-sync.sh
+Path=/usr/local/src/CCHS-Config/
 Icon=terminal
 Terminal=true
