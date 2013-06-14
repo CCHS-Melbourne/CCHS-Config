@@ -20,8 +20,7 @@ else
 	# this is highly unusual, but may happen
 	echo "No original clone.";
 	# this git location may need to be updated at some point.
-	git clone https://github.com/CCHS-Melbourne/CCHS-Config.git /usr/local/src/CCHS-Config
-	git checkout -B ubuntu-13.04
+	git clone https://github.com/CCHS-Melbourne/CCHS-Config.git -b ubuntu-13.04 /usr/local/src/CCHS-Config
 fi
 
 # run sync-config.sh
