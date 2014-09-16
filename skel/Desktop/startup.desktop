@@ -1,7 +1,8 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Type=Application
-Name=Startup Application
-Exec=/usr/local/src/CCHS-Config/startup-sync.sh
+Name=Update Software
+Exec=gksudo /usr/local/src/CCHS-Config/startup-sync.sh
+Path=/usr/local/src/CCHS-Config/
 Icon=terminal
 Terminal=true

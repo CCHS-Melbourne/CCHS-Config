@@ -7,7 +7,7 @@
 if ! which git &> /dev/null;then
 	echo "git not found.  Installing from repos";
 	apt-get -qq update;
-	apt-get -y install git;
+	apt-get -y install git gksu;
 fi
 
 # Do we have a local repo?
@@ -26,3 +26,4 @@ fi
 # run sync-config.sh
 cd /usr/local/src/CCHS-Config
 ./sync-config.sh
+read -p "Complete, Press ENTER key to close window"

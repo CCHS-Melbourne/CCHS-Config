@@ -145,10 +145,24 @@ fi
 
 # Pronterface and Skeinforge
 echo -ne "Checking Pronterface and Skeinforge installed";
-if [ ! -d "/usr/share/pronterface" ]; then
-	apt-add-repository -y ppa:richi-paraeasy/ppa
-	apt-get -qq update
-	apt-get -qqy install pronterface skeinforge
+if [ ! -d "/usr/local/Printrun" ]; then
+	apt-get -y install python-serial python-wxgtk2.8 python-pyglet python-tornado python-setuptools python-libxml2 python-gobject avahi-daemon libavahi-compat-libdnssd1
+	easy_install pybonjour tornado
+	sudo easy_install https://github.com/D1plo1d/py-mdns/archive/master.zip
+	cd /usr/local
+	git clone https://github.com/kliment/Printrun.git	
+fi
+echo "...done";
+
+echo -ne "Installing Cambam";
+if [ ! -d "/usr/local/Cambam/0.9.8" ]; then
+	apt-get -y install mono-runtime libmono-system-windows-forms4.0-cil libmono-system-web4.0-cil libmono-system-design4.0-cil libmono-system-numerics4.0-cil
+	cd /usr/local/src
+	wget http://www.cambam.co.uk/downloads/dw/CamBam0.9.8N-mono-beta5.tgz
+	tar -zxf CamBam0.9.8N-mono-beta5.tgz
+
+	mkdir -p /usr/local/Cambam
+	mv /usr/local/src/CamBam0.9.8 /usr/local/Cambam/0.9.8
 fi
 echo "...done";
 
@@ -306,11 +320,16 @@ if [ ! -e "/home/hacker/.config/inkscape/extensions/templates/eggbot.svg" ];then
 fi
 echo "...done.";
 
+<<<<<<< HEAD
 # reset hacker to autologin
 echo -ne "Setting hacker to be default login";
 rm -rf /etc/lightdm
 cp -RL /usr/local/src/CCHS-Config/lightdm /etc/
 echo "...done";
+=======
+# setup flags to load specific configs
+
+>>>>>>> origin/ubuntu-13.04
 
 # Turn off screen locking and locking from resume
 gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
