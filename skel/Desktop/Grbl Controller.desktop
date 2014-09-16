@@ -1,8 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=Grbl Controller
-Exec=/usr/local/GrblHoming/GrblController
-Icon=/usr/local/GrblHoming/
-Terminal=false
-Categories=Development;Engineering;Electronics;
