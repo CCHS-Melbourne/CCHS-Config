@@ -283,17 +283,6 @@ if [ ! -d "/usr/local/GrblHoming" ]; then
 	make
 fi
 
-# config resync
-# Don't blow away everything, easier to just do it in parts
-# may change this policy in the future
-
-# Desktop
-echo -ne "Clearing Desktop";
-rm -rf /home/hacker/Desktop
-cp -RL /etc/skel/Desktop /home/hacker
-chown -R hacker:hacker /home/hacker/Desktop
-echo "...done.";
-
 # check for sketchup 8 install, remove shortcut if it doesn't exist
 if [ ! -d "/home/hacker/.wine/drive_c/Program Files/Google/Google SketchUp 8/" ]; then
 	rm "/home/hacker/Desktop/SketchUp 8.desktop"
@@ -317,50 +306,12 @@ if [ ! -e "/home/hacker/.config/inkscape/extensions/templates/eggbot.svg" ];then
 fi
 echo "...done.";
 
-# setup flags to load specific configs
-
 # reset hacker to autologin
 echo -ne "Setting hacker to be default login";
 rm -rf /etc/lightdm
 cp -RL /usr/local/src/CCHS-Config/lightdm /etc/
 echo "...done";
 
-# Config
-# this doesn't need cleaning, but the defaults need to be recopied
-# any new files will stay
-echo -ne "Resetting Configs";
-cp -R /usr/local/src/CCHS-Config/Configs /home/hacker/
-chown -R hacker:hacker /home/hacker/Configs
-rm -rf /home/hacker/.Slic3r
-
 # Turn off screen locking and locking from resume
 gsettings set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false
 gsettings set org.gnome.desktop.screensaver lock-enabled false
-
-#which machine are we?
-LOWER_HOSTNAME=`echo $HOSTNAME | tr [:upper:] [:lower:]`
-if [[ "$LOWER_HOSTNAME" == *004* && "$LOWER_HOSTNAME" == *cchs* ]];then
-	# This is the frankencake
-	echo -ne "...default Slic3r profile is FrankenCake";
-	PRINTER_CONFIG="FrankenCake";
-elif [[ "$LOWER_HOSTNAME" == *006* && "$LOWER_HOSTNAME" == *cchs* ]];then
-	# This is the frankencake
-	echo -ne "...default Slic3r profile is FrankenCake";
-	PRINTER_CONFIG="FrankenCake";
-elif [[ "$LOWER_HOSTNAME" == *011* && "$LOWER_HOSTNAME" == *cchs* ]];then
-	# this is the prusa
-	echo -ne "...default Slic3r profile is Prusa";
-	PRINTER_CONFIG="Prusa";
-else
-	# this is the default
-	echo -ne "...default Slic3r profile is Prusa";
-	PRINTER_CONFIG="Prusa";
-fi
-
-
-ln -s /home/hacker/Configs/$PRINTER_CONFIG/slic3r-0.9.9/ /home/hacker/.Slic3r
-echo "...done";
-
-# Clean Downloads
-# decide on this later
-# rm -rf /home/hacker/Downloads/*
