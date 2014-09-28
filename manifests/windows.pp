@@ -27,4 +27,7 @@ node /^elitebook-\d+\-w$/ {
 	class { "sketchup": }
 
 	class { "arduino": }
+
+	class { "windows_settings": }
+
 }
