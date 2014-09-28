@@ -25,4 +25,6 @@ node /^elitebook-\d+\-w$/ {
 	class { "pronterface": }
 
 	class { "sketchup": }
+
+	class { "arduino": }
 }
