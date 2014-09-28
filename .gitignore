@@ -1,6 +1,7 @@
 #VIm
 *.sh~
 *.desktop~
+*~
 
 #################
 ## Eclipse
