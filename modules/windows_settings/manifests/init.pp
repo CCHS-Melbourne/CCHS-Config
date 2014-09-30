@@ -26,15 +26,16 @@ class windows_settings {
 	}
 
 	# clean desktop, downloads and documents
-	file { 'desktop_files':
-		path		=> 'C:\Users\hacker\Desktop',
-		ensure		=> 'directory',
-		source		=> "C:\Software\Desktop\Desktop",
-		require		=> Exec['clear_directories'],
-	}
+	#file { 'desktop_files':
+	#	path		=> 'C:\Users\hacker\Desktop',
+	#	ensure		=> 'directory',
+	#	source		=> "C:\Software\Desktop\Desktop",
+	#	require		=> Exec['clear_directories'],
+	#}
 	
-	exec { 'clear_directories':
-		command		=> "C:\Software\Desktop\Cleanup\cleanup.bat ",
-		require		=> File['background_local'],
-	}
+	# This causes problems :/
+	#exec { 'clear_directories':
+	#	command		=> "C:\Software\Desktop\Cleanup\cleanup.bat ",
+	#	require		=> File['background_local'],
+	#}
 }
