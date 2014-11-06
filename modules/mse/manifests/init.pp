@@ -10,7 +10,6 @@ class mse {
 	}
 
 	package { 'MSE updater':
-		#ensure		=>	'file',
 		source		=>	"\\\\puppet\\software\\MSE\mpam-fe.exe",
         	install_options =>	[ '/q' ]
 	}

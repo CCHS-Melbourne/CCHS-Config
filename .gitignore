@@ -3,6 +3,9 @@
 *.desktop~
 *~
 
+# Lets just skip the GIANT software directory.
+software*
+
 #################
 ## Eclipse
 #################

@@ -29,5 +29,7 @@ node /^elitebook-\d+\-w$/ {
 	class { "arduino": }
 
 	class { "windows_settings": }
+	
+	class { "lego": }
 
 }
