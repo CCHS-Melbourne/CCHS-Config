@@ -26,16 +26,26 @@ class windows_settings {
 	}
 
 	# clean desktop, downloads and documents
-	#file { 'desktop_files':
-	#	path		=> 'C:\Users\hacker\Desktop',
-	#	ensure		=> 'directory',
-	#	source		=> "C:\Software\Desktop\Desktop",
-	#	require		=> Exec['clear_directories'],
-	#}
+	file { 'desktop_files':
+		path		=> 'C:\Users\Public\Desktop',
+		ensure		=> 'directory',
+		source		=> "C:\Software\Desktop\Desktop",
+		recurse		=> true,
+		require		=> Exec['clear_directories'],
+	}
 	
 	# This causes problems :/
-	#exec { 'clear_directories':
-	#	command		=> "C:\Software\Desktop\Cleanup\cleanup.bat ",
-	#	require		=> File['background_local'],
-	#}
+	exec { 'clear_directories':
+		command		=> "C:\Software\Desktop\Cleanup\cleanup.bat ",
+		require		=> File['background_local'],
+	}
+
+	# set hosts file
+	file { 'hosts':
+		path		=> 'C:\Windows\System32\drivers\etc\hosts',
+		ensure		=> 'file',
+		source		=> "C:\Software\Desktop\hosts",
+		require		=> File['background_local'],
+	}
+
 }
