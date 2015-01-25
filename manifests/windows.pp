@@ -32,4 +32,8 @@ node /^elitebook-\d+\-w$/ {
 	
 	class { "lego": }
 
+	class { "kicad": }
+
+	class { "uc232a": }
+
 }

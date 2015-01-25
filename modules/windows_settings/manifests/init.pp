@@ -20,6 +20,17 @@ class windows_settings {
 		notify		=> Exec['run_bgi'],
 	}
 
+	# Clear the startup directory
+	# Because...People
+	file { 'Windows Startup':
+		path		=> 'C:\Users\hacker\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup',
+		ensure		=> 'directory',
+		source		=> "C:\Software\Desktop\Startup",
+		recurse		=> true,
+		purge		=> true,
+		require		=> File['background_local'],
+	}
+
 	exec { 'run_bgi':
 		command		=> "C:\Software\Desktop\Background\Bginfo.bat ",
 		refreshonly	=> true,
