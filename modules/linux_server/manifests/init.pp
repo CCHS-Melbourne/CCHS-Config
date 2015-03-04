@@ -41,4 +41,13 @@ class linux_server {
 		uid		=> '1005',
 		groups		=> [software],
 	}
+
+	account { 'andyg':
+		# This is Andy Gelme
+		password	=> '$6$x8ggM2FG$ALORpIXaMlmDALDrWjBHyRRokoeO138pCiGDTne.rkd0/sbJljxHHqW6HK3FOBBaDVmaLxwtSRT.JBpDbDOpK1',
+		uid		=> '1006',
+		groups		=> [software],
+	}
+
+	# 1007 is anton
 }

@@ -35,5 +35,7 @@ node /^elitebook-\d+\-w$/ {
 	class { "kicad": }
 
 	class { "uc232a": }
+	
+	class { "acrobat_reader": }
 
 }
