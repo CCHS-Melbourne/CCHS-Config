@@ -50,4 +50,12 @@ class linux_server {
 	}
 
 	# 1007 is anton
+
+	account { 'rgannon':
+                # This is Rob Gannon
+                password        => '$6$ZqnjkY8H$ddpdSQ3WW.pXUCnD6tTgchhRPuOGNpSv5m/ZUWYWX0bvQWL/Onn0iOI7XOGscvJD.fPG/JjBG3.avaW01pSZ30',
+                uid             => '1008',
+                groups          => [software],
+        }
+
 }
